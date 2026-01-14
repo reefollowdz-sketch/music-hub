@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Music Hub | مركز الموسيقى</title>
+    <style>
+        /* Base styles will be moved to CSS file */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, -apple-system, sans-serif; background: #000; color: #fff; }
+    </style>
+</head>
+<body>
+    <!-- Desktop Header -->
+    <header class="desktop-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24">
+                        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                    </svg>
+                    <span class="logo-text">Music Hub</span>
+                </div>
+            </div>
+            
+            <div class="search-section">
+                <div class="search-container">
+                    <svg class="search-icon" viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                    <input type="text" class="search-input" placeholder="ابحث عن أغنية..." id="searchInput">
+                </div>
+            </div>
+            
+            <nav class="nav-section">
+                <button class="nav-btn active" data-page="home">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                    </svg>
+                    <span>الرئيسية</span>
+                </button>
+                <button class="nav-btn" data-page="upload">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm3-10.17L14.17 8H13v6h-2V8H9.83L12 5.83zM5 18h14v2H5z"/>
+                    </svg>
+                    <span>رفع</span>
+                </button>
+                <button class="nav-btn" data-page="settings">
+                    <svg class="nav-icon" viewBox="0 0 24 24">
+                        <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                    </svg>
+                    <span>الإعدادات</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="mobile-header-content">
+            <div class="mobile-logo">
+                <svg class="mobile-logo-icon" viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+                <span>Music</span>
+            </div>
+            
+            <div class="mobile-search-btn" id="mobileSearchToggle">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="mobile-search-overlay" id="mobileSearch">
+            <div class="mobile-search-container">
+                <input type="text" class="mobile-search-input" placeholder="ابحث عن أغنية...">
+                <button class="mobile-search-close">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <section class="page active" id="homePage">
+            <div class="page-header">
+                <h1 class="page-title">المكتبة الموسيقية</h1>
+                <div class="page-subtitle" id="songsCount">0 أغنية</div>
+            </div>
+            
+            <div class="songs-container" id="songsContainer">
+                <!-- Songs will be loaded here -->
+                <div class="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>جاري تحميل الأغاني...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Page -->
+        <section class="page" id="uploadPage">
+            <div class="page-header">
+                <h1 class="page-title">رفع أغنية جديدة</h1>
+            </div>
+            
+            <div class="upload-container">
+                <div class="upload-card">
+                    <div class="upload-dropzone" id="uploadDropzone">
+                        <svg class="upload-icon" viewBox="0 0 24 24">
+                            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                        </svg>
+                        <h3 class="upload-title">اسحب وأفلت الملف هنا</h3>
+                        <p class="upload-subtitle">أو انقر لاختيار ملف</p>
+                        <p class="upload-formats">يدعم: MP3, MP4</p>
+                        <input type="file" id="fileInput" accept=".mp3,.mp4" class="file-input">
+                    </div>
+                    
+                    <div class="upload-form">
+                        <div class="form-group">
+                            <label for="songTitle" class="form-label">
+                                <svg class="form-icon" viewBox="0 0 24 24">
+                                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                                </svg>
+                                اسم الأغنية
+                            </label>
+                            <input type="text" id="songTitle" class="form-input" placeholder="أدخل اسم الأغنية...">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button class="upload-btn" id="uploadSubmit">
+                                <svg class="btn-icon" viewBox="0 0 24 24">
+                                    <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm3-10.17L14.17 8H13v6h-2V8H9.83L12 5.83zM5 18h14v2H5z"/>
+                                </svg>
+                                رفع الأغنية
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-progress" id="uploadProgress">
+                        <div class="progress-header">
+                            <span class="progress-title">جاري الرفع...</span>
+                            <span class="progress-percentage">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Page -->
+        <section class="page" id="settingsPage">
+            <div class="page-header">
+                <h1 class="page-title">الإعدادات</h1>
+            </div>
+            
+            <div class="settings-container">
+                <div class="settings-section">
+                    <h2 class="settings-title">
+                        <svg class="settings-icon" viewBox="0 0 24 24">
+                            <path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/>
+                        </svg>
+                        إعدادات الصوت
+                    </h2>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span>مستوى الصوت</span>
+                            <span class="setting-value" id="volumeValue">80%</span>
+                        </div>
+                        <input type="range" id="volumeSlider" class="volume-slider" min="0" max="100" value="80">
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h2 class="settings-title">
+                        <svg class="settings-icon" viewBox="0 0 24 24">
+                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                        </svg>
+                        الملفات المحملة
+                    </h2>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span>عدد الأغاني: <span id="totalSongs">0</span></span>
+                            <span>المساحة المستخدمة: <span id="usedSpace">0 MB</span></span>
+                        </div>
+                        <button class="danger-btn" id="clearAllBtn">
+                            <svg class="btn-icon" viewBox="0 0 24 24">
+                                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                            </svg>
+                            مسح الكل
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <button class="mobile-nav-btn active" data-page="home">
+            <svg class="mobile-nav-icon" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            <span>الرئيسية</span>
+        </button>
+        
+        <button class="mobile-nav-btn" data-page="upload">
+            <svg class="mobile-nav-icon" viewBox="0 0 24 24">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+            <span>رفع</span>
+        </button>
+        
+        <button class="mobile-nav-btn" data-page="settings">
+            <svg class="mobile-nav-icon" viewBox="0 0 24 24">
+                <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+            </svg>
+            <span>الإعدادات</span>
+        </button>
+    </nav>
+
+    <!-- Music/Video Player -->
+    <div class="player-overlay" id="playerOverlay">
+        <div class="player-container" id="playerContainer">
+            <!-- For MP3 Files -->
+            <div class="audio-player" id="audioPlayer">
+                <div class="player-header">
+                    <button class="player-close" id="playerClose">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                    <h3 class="player-title" id="audioTitle">الأغنية الحالية</h3>
+                </div>
+                
+                <div class="player-cover">
+                    <img src="/static/music.png" alt="Cover" class="cover-image">
+                </div>
+                
+                <div class="player-controls">
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span>
+                        <span id="duration">0:00</span>
+                    </div>
+                    
+                    <div class="progress-bar" id="audioProgress">
+                        <div class="progress-fill"></div>
+                    </div>
+                    
+                    <div class="control-buttons">
+                        <button class="control-btn" id="prevBtn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                            </svg>
+                        </button>
+                        
+                        <button class="control-btn play-btn" id="playBtn">
+                            <svg class="play-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                        
+                        <button class="control-btn" id="nextBtn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <audio id="audioElement" preload="metadata"></audio>
+            </div>
+            
+            <!-- For MP4 Files -->
+            <div class="video-player" id="videoPlayer">
+                <div class="video-header">
+                    <button class="video-close" id="videoClose">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                    <h3 class="video-title" id="videoTitle">الفيديو الحالي</h3>
+                </div>
+                
+                <div class="video-container">
+                    <video id="videoElement" class="video-element" controls playsinline></video>
+                </div>
+                
+                <div class="video-controls">
+                    <button class="video-control-btn" id="videoPlayBtn">
+                        <svg class="video-play-icon" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg class="video-pause-icon" viewBox="0 0 24 24" style="display: none;">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    
+                    <div class="video-time">
+                        <span id="videoCurrentTime">0:00</span>
+                        <span id="videoDuration">0:00</span>
+                    </div>
+                    
+                    <button class="video-control-btn" id="videoFullscreenBtn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Player Mini Bar (For Desktop) -->
+    <div class="player-mini-bar" id="playerMiniBar">
+        <div class="mini-player-content">
+            <div class="mini-cover">
+                <img src="/static/music.png" alt="Cover" id="miniCover">
+            </div>
+            
+            <div class="mini-info">
+                <h4 class="mini-title" id="miniTitle">غير نشط</h4>
+                <p class="mini-status" id="miniStatus">اختر أغنية للاستماع</p>
+            </div>
+            
+            <div class="mini-controls">
+                <button class="mini-btn" id="miniPlayBtn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                </button>
+                
+                <button class="mini-btn" id="miniNextBtn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+                    </svg>
+                </button>
+                
+                <button class="mini-btn player-expand" id="expandPlayer">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initial variables will be in main JS file
+        window.appConfig = {
+            apiBase: '/api',
+            uploadUrl: '/api/upload',
+            songsUrl: '/api/songs'
+        };
+    </script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
